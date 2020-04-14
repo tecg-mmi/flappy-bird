@@ -9,6 +9,8 @@ const birdie = {
   ],
   maxAnimationStep: 2,
   animationStep: 0,
+  counterInterval: 0,
+  maxInterval: 5,
   width: 34,
   height: 24,
   x: 0,
@@ -27,8 +29,11 @@ const birdie = {
   },
 
   render () {
-    this.animationStep = this.animationStep < this.maxAnimationStep ? this.animationStep + 1 : 0
-    console.log(this.animationStep)
+    this.counterInterval++
+    if (!(this.counterInterval % this.maxInterval)){
+      this.counterInterval = 0
+      this.animationStep = this.animationStep < this.maxAnimationStep ? this.animationStep + 1 : 0
+    }
     this.game.context.save()
     this.game.context.translate(this.x, this.y)
     this.game.context.rotate(0)
