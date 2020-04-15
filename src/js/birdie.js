@@ -26,7 +26,6 @@ const birdie = {
   },
 
   update () {
-    console.log(this.game.hasStarted)
     if (this.game.hasStarted) {
       if (this.fallSpeed < this.maxFallSpeed)
         this.fallSpeed += this.game.gravity
