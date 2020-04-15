@@ -18,10 +18,6 @@ const birdie = {
   fallSpeed: 0,
   maxFallSpeed: 7,
 
-  update () {
-    this.render()
-  },
-
   init (game) {
     this.game = game
     this.x = this.width / 2 + 3
@@ -39,7 +35,7 @@ const birdie = {
 
   render () {
     this.counterInterval++
-    if (!(this.counterInterval % this.maxInterval)){
+    if (!(this.counterInterval % this.maxInterval)) {
       this.counterInterval = 0
       this.animationStep = this.animationStep < this.maxAnimationStep ? this.animationStep + 1 : 0
     }
@@ -59,6 +55,13 @@ const birdie = {
       }
     )
     this.game.context.restore()
+  },
+
+  checkCollisionWithGround () {
+    if (this.y + this.height / 2 > ground.frame.dy){
+      this.y = ground.frame.dy - this.height / 2
+      this.fallSpeed = -this.maxFallSpeed
+    }
   }
 }
 
