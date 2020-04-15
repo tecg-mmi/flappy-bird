@@ -7,6 +7,7 @@ const birdie = {
     { sx: 62, sy: 982 },
     { sx: 118, sy: 982 }
   ],
+  maxAnimationStep: 0,
   animationStep: 0,
   counterInterval: 0,
   maxInterval: 5,
