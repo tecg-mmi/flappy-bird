@@ -7,7 +7,6 @@ const birdie = {
     { sx: 62, sy: 982 },
     { sx: 118, sy: 982 }
   ],
-  maxAnimationStep: 2,
   animationStep: 0,
   counterInterval: 0,
   maxInterval: 5,
@@ -26,6 +25,15 @@ const birdie = {
     this.game = game
     this.x = this.width / 2 + 3
     this.y = (game.canvas.height - ground.frame.sh) / 2
+    this.maxAnimationStep = this.frames.length - 1
+  },
+
+  update () {
+    if (this.fallSpeed < this.maxFallSpeed)
+      this.fallSpeed += this.game.gravity
+    this.y += this.fallSpeed
+    this.checkCollisionWithGround()
+    this.render()
   },
 
   render () {
