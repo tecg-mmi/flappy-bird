@@ -15,6 +15,7 @@ const game = {
   frameCounter: 0,
   frameInterval: 80,
   maxTubesPairs: 3,
+  requestId: 0,
 
   init () {
     this.context = this.canvas.getContext('2d')
@@ -29,9 +30,10 @@ const game = {
   },
 
   animate () {
-    window.requestAnimationFrame(() => {
+    this.requestId = window.requestAnimationFrame(() => {
       this.animate()
     })
+    console.log(this.requestId)
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
     background.update()
     if (this.hasStarted) {
@@ -61,6 +63,10 @@ const game = {
       coordinates.dw,
       coordinates.dh,
     )
+  },
+
+  cancelAnimation () {
+    window.cancelAnimationFrame(this.requestId)
   }
 }
 
